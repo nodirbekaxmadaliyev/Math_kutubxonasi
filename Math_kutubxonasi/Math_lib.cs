@@ -14,6 +14,15 @@ namespace Math_kutubxonasi
                 if (n % i == 0) return false;
             return true;
         }
+
+        public void Tub(int n)
+        {
+            Console.WriteLine($"[1, {n}] oraliqdagi tub sonlar :");
+            for (int i = 1; i <= n; i++)
+                if (IsTub(i)) Console.Write(i + " ");
+            Console.WriteLine();
+        }           
+
         public bool Fibonachi(long n)
         {
             if (n < 4) return true;

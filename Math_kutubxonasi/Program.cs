@@ -13,16 +13,31 @@ internal class Program
             n = Convert.ToInt32(Console.ReadLine());
             switch(n)
             {
-                case 1:
+                //Tub sonlar
+                case 1 :
                     {
+                        Console.WriteLine("Hi");
                         Console.Clear();
-                        Console.Write("Kerakli sonni kiriting : "); ;
-                        long isTub = Convert.ToInt64(Console.ReadLine());
+                        
+                        Console.WriteLine("Kerakli bo'limni tanlang :\n1 - [1, N] oraliqdagi tub sonlarni chiqarish;\n2 - Kiritlgan sonni tublikka tekshirish; "); 
+                        short chek = Convert.ToInt16(Console.ReadLine());
+                        if(chek == 2)
+                        {
+                            Console.Write("Kerakli sonni kiriting : "); ;
+                            long isTub = Convert.ToInt64(Console.ReadLine());
                         Console.Write("\tKiritilgan son tub");
                         if (!obj.IsTub(isTub)) Console.WriteLine(" emas\n");
+                        }
+                        else
+                        {
+                            Console.Write("Chegarani kiriting : ");
+                            int isTub = Convert.ToInt32(Console.ReadLine());
+                            obj.Tub(isTub);
+                        }
                         Console.ReadKey();
                         break;
                     }
+                    //Fibonachi
                 case 2:
                     {
                         Console.Clear();
