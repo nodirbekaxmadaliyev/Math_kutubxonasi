@@ -3,13 +3,13 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        Math_lib obj = new Math_lib();
+        Linear_algebra obj = new Linear_algebra();
         Console.WriteLine("Kichik dasturimizga xush kelibsiz!\n");
         int n = 0;
         do
         {
             Console.WriteLine("Kerakli bo'limni tanlang:\n");
-            Console.WriteLine(" 1 -> Tublikka tekshirish;\n\n 2 -> Fibonachi;\n\n 3 -> Daraja;\n\n 4 -> Mukammallikka tekshirish;\n\n 0 -> Tugatish;\n");
+            Console.WriteLine(" 1 -> Tublikka tekshirish;\n\n 2 -> Fibonachi;\n\n 3 -> Daraja;\n\n 4 -> Mukammallikka tekshirish;\n\n 5 -> Matritsalarni qo'shish;\n\n 0 -> Tugatish;\n");
             n = Convert.ToInt32(Console.ReadLine());
             switch(n)
             {
@@ -67,7 +67,6 @@ internal class Program
                                 obj.Fibonachi(a1, a2, count);
                                 break;
                         }
-                        Console.ReadKey();
                         break;
                     }
                 case 3: Console.WriteLine("Double: a va Int: n larni kiritng:");
@@ -75,7 +74,6 @@ internal class Program
                         double a = Convert.ToDouble(s[0]);
                         int N = Convert.ToInt32(s[1]);
                         Console.WriteLine($"\t{a} ^ {N} = {obj.Pow(a, N)}\n");
-                        Console.ReadKey();
                         break;
                 case 4:
                     Console.Write("\tTekshiriladigan sonni kiriting: ");
@@ -83,10 +81,47 @@ internal class Program
                     Console.Write($" {check} soni mukammal son");
                     if (!obj.IsPerfect(check)) Console.Write(" emas");
                     Console.WriteLine();
-                    Console.ReadKey();
                     break;
-                 }
+
+                case 5:
+                    Console.Clear();
+                    Console.WriteLine(" Matritsalar o'lchamini kiriting: ");
+                    string[] size = Console.ReadLine().Split();
+                    int lines = int.Parse(size[0]), rows = int.Parse(size[1]);
+                    Console.WriteLine(" 1 - matritsani kiriting:");
+                    var firstMatrix = ScanMatrix(lines, rows);
+                    Console.WriteLine(" 2 - matritsani kiriting:");
+                    var secondMatrix = ScanMatrix(lines, rows);
+                    Console.WriteLine("\n\nYig'indisi: ");
+                    PrintMatrix(obj.AddMatrix(firstMatrix, secondMatrix));
+                    break;
+                 
+            }
+            Console.ReadKey();
             Console.Clear();
-        } while (n < 5 && n > 0);
+        } while (n < 6 && n > 0);
+    }
+    static void PrintMatrix(double[,] matrix)
+    {
+        int n = matrix.GetLength(0), m = matrix.GetLength(1);
+        for (int i = 0; i < n; i++)
+        {
+            Console.WriteLine();
+            for (int j = 0; j < m; j++)
+                Console.Write(" " + matrix[i, j]);
+        }
+    }
+    static double[,] ScanMatrix(int n, int m)
+    {
+        double[,]  matrix = new double[n, m];
+        Console.WriteLine($" [{n}, {m}] o'lchamdagi matritsani kiriting:\n");
+        string[] line;
+        for (int i = 0; i < n; i ++)
+        {
+            line = Console.ReadLine().Split();
+            for (int j = 0; j < m; j ++)
+                matrix[i, j] = double.Parse(line[j]);
+        }
+        return matrix;
     }
 }
