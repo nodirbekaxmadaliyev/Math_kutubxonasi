@@ -15,12 +15,12 @@ namespace Math_kutubxonasi
             return true;
         }
 
-        public void Tub(int n)
+        public List<long> Tub(int n)
         {
-            Console.WriteLine($"[1, {n}] oraliqdagi tub sonlar :");
-            for (int i = 1; i <= n; i++)
-                if (IsTub(i)) Console.Write(i + " ");
-            Console.WriteLine();
+            var tubNumbers = new List<long>();
+            for (int i = 2; i <= n; i++)
+                if (IsTub(i)) tubNumbers.Add(i);
+            return tubNumbers;
         }           
 
         public bool Fibonachi(long n)
@@ -36,9 +36,9 @@ namespace Math_kutubxonasi
             if (c == n) return true;
             return false;
         }
-        public void Fibonachi(long a, long b)
+        public List<long> Fibonachi(long a, long b)
         {
-            Console.WriteLine($"\t[{a}, {b}] oraliqdagi fibonachi sonlar : ");
+            List<long> fibos = new List<long>();
             if (a > b) (a, b) = (b, a);
             long a1 = 0, a2 = 1, c = a1 + a2;
             while(c < a)
@@ -49,29 +49,27 @@ namespace Math_kutubxonasi
             }
             while(c <= b)
             {
-                Console.Write(c + " ");
+                fibos.Add(c);
                 c = a1 + a2;
                 a1 = a2;
                 a2 = c;
             }
+            return fibos;
         }
-        public void Fibonachi(long a1, long a2, int n)
+        public List<long> Fibonachi(long a1, long a2, int n)
         {
-            Console.WriteLine($"\tBerilgan boshlang'ich qiymatlar bilan {n} ta fibonachi son :");
-            if (n < 2) Console.WriteLine(a1);
-                else 
-            {
-                Console.Write($"{a1}, {a2} ");
+            var fibos = new List<long>();
+            fibos.Add (a1); 
+            fibos.Add (a2);
                 long c;
                 while (n -- > 2)
                 {
                     c = a1 + a2;
-                    Console.Write(c + " ");
+                    fibos.Add (c);
                     a1 = a2;
                     a2 = c;
                 }
-            }
-            Console.WriteLine();
+            return fibos;
         }
         public double Pow(double a, int n)
         {

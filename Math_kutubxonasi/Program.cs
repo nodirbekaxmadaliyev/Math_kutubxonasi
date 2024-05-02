@@ -16,7 +16,6 @@ internal class Program
                 //Tub sonlar
                 case 1 :
                     {
-                        Console.WriteLine("Hi");
                         Console.Clear();
                         
                         Console.WriteLine("Kerakli bo'limni tanlang :\n1 - [1, N] oraliqdagi tub sonlarni chiqarish;\n2 - Kiritlgan sonni tublikka tekshirish; "); 
@@ -32,7 +31,9 @@ internal class Program
                         {
                             Console.Write("Chegarani kiriting : ");
                             int isTub = Convert.ToInt32(Console.ReadLine());
-                            obj.Tub(isTub);
+                            Console.WriteLine($"[1, {isTub}] oraliqdagi tub sonlar :");
+                            var tubNumbers = obj.Tub(isTub);
+                            PrintList(tubNumbers);
                         }
                         Console.ReadKey();
                         break;
@@ -56,7 +57,8 @@ internal class Program
                                 string[] num = Console.ReadLine().Split();
                                 long x = Convert.ToInt64(num[0]), y = Convert.ToInt64(num[1]);
                                 Console.WriteLine($" [{x}, {y}] oraliqdagi fibonachi sonlar :\n");
-                                obj.Fibonachi(x, y);
+                                var fibos = obj.Fibonachi(x, y);
+                                PrintList(fibos);
                                 break;
                             default:
                                 Console.WriteLine(" Boshlang'ich qiymatlar va fibonachi sonlar sonini kiriting:");
@@ -64,7 +66,8 @@ internal class Program
                                 long a1 = Convert.ToInt64(nums[0]), a2 = Convert.ToInt64(nums[1]);
                                 int count = Convert.ToInt32(nums[2]);
                                 Console.WriteLine($"{a1} va {a2} bilan boshlanuvchi {count} ta fibonachi son:");
-                                obj.Fibonachi(a1, a2, count);
+                                var fibs = obj.Fibonachi(a1, a2, count);
+                                PrintList(fibs);
                                 break;
                         }
                         break;
@@ -97,7 +100,7 @@ internal class Program
                     break;
                  
             }
-            Console.ReadKey();
+            if (n != 0) Console.ReadKey();
             Console.Clear();
         } while (n < 6 && n > 0);
     }
@@ -123,5 +126,12 @@ internal class Program
                 matrix[i, j] = double.Parse(line[j]);
         }
         return matrix;
+    }
+
+    static void PrintList(List<long> ints)
+    {
+        foreach(int i in ints)
+         Console.Write(" " + i); 
+        Console.WriteLine('\n');
     }
 }
